@@ -57,24 +57,31 @@ require_once 'TDG.php'; ?>
             for($i=0;$i<sizeof($rescolnames);$i++){
                 echo "<td>" . $rescolnames[$i] ."</td>";
             }
-            echo "<td>Promote</td>";
+            echo "<td>Edit</td><td>Promote</td>";
             echo "</tr>";
 
             
             
             for($i=0;$i<sizeof($reslist);$i++) {//Creates a loop to loop through results
-                echo '<form action="buyPromotion.php" method="post">';
+                //echo '<form action="buyPromotion.php" method="post">';
                 echo "<tr>";
                 for($j=0;$j<sizeof($reslist[$i]);$j++) {
                     echo "<td>" . $reslist[$i][$j] . "</td>";
                 }
-                ?>
-
-                <input type="hidden" name="adid" value="<?php echo $reslist[$i][0]; ?>">
-        <?php
-                echo "<td> <input type=\"submit\" name=\"promote\" value=\"Buy Promotion\"></td>";
-                echo "</tr>";
+                echo '<td>';
+                echo '<form action="EditAdd.php" method="post">';
+                echo '<input  type="hidden" name="adid" value="'.$reslist[$i][0].'">';
+                echo '<input type="submit" name="edit" value="Edit">';
+                echo '</form>';
+                echo '</td>';
+                
+                echo "<td>";
+                echo '<form action="buyPromotion.php" method="post">';
+                echo "<input type=\"hidden\" name=\"adid\" value=\"". $reslist[$i][0]."\">";
+                echo "<input type=\"submit\" name=\"promote\" value=\"Buy Promotion\"></td>";
                 echo "</form>";
+                echo "</td>";
+                echo "</tr>";
             }
 
         }

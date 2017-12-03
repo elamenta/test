@@ -133,6 +133,49 @@ class TDG
         return mysqli_num_rows($result);
     }
 
+    public function getAdById($id){
+        $con = $this->connect();
+        $sql = "SELECT * FROM ad WHERE AdID = ".$id;
+        $result = mysqli_query($con,$sql);
+        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+        return $row;
+    }
+
+    public function updateAdById($id,$contact,$Price,$ForSaleBy,$availability,$Title,$Description,$image,
+    /*$Category,$SubCategory,$prov,$city,*/$adtype){
+        $con = $this->connect();
+        $sql = 'UPDATE ad SET contact = "'.$contact.'", price = '.$Price.', forsaleby = "'.$ForSaleBy.'", availability = "'.$availability.'", title = "'.$Title.'", description = "'.$Description.'", '.
+        ' images = "'.$image./*', category = '.$Category.', subcategory = '.$SubCategory.', province = '.$prov.', city = '.$city.*/'", adtype = "'.$adtype.'"  WHERE AdID = '.$id.';';
+        //echo 'SQL: '.$sql.'<br>';
+        if(mysqli_query($con, $sql)){
+            
+            $con->close();
+            return true;
+        }else{
+            echo"update AD FAILED!";
+            echo mysqli_error($con);
+            $con->close();
+            return false;
+        }
+    }
+    //SELECT `ad`.`AdID`,
+/*    `ad`.`contact`,
+    `ad`.`price`,
+    `ad`.`forsaleby`,
+    `ad`.`availability`,
+    `ad`.`title`,
+    `ad`.`description`,
+    `ad`.`images`,
+    `ad`.`category`,
+    `ad`.`subcategory`,
+    `ad`.`userID`,
+    `ad`.`postDate`,
+    `ad`.`province`,
+    `ad`.`city`,
+    `ad`.`storeName`,
+    `ad`.`adtype`
+FROM `comp353`.`ad`;
+*/
     // takes an email as argument and returns the userid if the email exists
     public function getUserByEmail($email){
         $con = $this->connect();

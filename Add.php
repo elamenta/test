@@ -19,7 +19,7 @@ require_once 'TDG.php';
                 <h2 id="nav_title">Menu</h2>
                 <ul id="nav_list">
                     <li class="active_class"><a href="index.php">Login</a></li>
-                    <li><a href="userHome.php">Home</a></li>
+                    <li><a href="userHome.php">HOME</a></li>
 
                 </ul>
             </nav>
@@ -31,7 +31,7 @@ require_once 'TDG.php';
 			<!--  Content -->
             <?php
             $mytdg = new TDG();
-
+            $mytdg->TDG();
             //check for membership
             if(!$mytdg->checkMembership($_SESSION["userID"])){
                 echo("<script>
@@ -68,8 +68,9 @@ require_once 'TDG.php';
                                 <tr>
                                     <td>Availability</td>
                                     <td><select name="Availability">
-                                            <option value="Weekdays">Online</option>
-                                            <option value="Weekends">Store</option>
+                                            <option value="Weekdays">Weekdays</option>
+                                            <option value="Weekends">Weekends</option>
+                                            <option value="Both">Both</option>
                                         </select>
                                     </td>
                                 </tr>

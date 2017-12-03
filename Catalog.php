@@ -1,10 +1,8 @@
 <?php
 session_start();
 require_once 'security.php';
-if(empty($_SESSION['logged_in'])){
-    echo("<script>
-                    window.location.replace('index.php')
-                     </script>");
+if(!$_SESSION['logged_in']){
+    header("Location: index.php");
 }
 require_once 'TDG.php';
 
